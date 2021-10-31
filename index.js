@@ -7,7 +7,18 @@ const images = [
     './assets/6.jpg'
 ]
 
+const bubbles = document.querySelectorAll('.bubble')
+//○● TODO: need to draw the bubbles
+function drawBubbles(){
+    console.log('draw bubbles')
+    for(let i = 0; i < images.length; i++){
+        bubbles[i].textContent = '○'
+    }
+    bubbles[currentImg].textContent = '●'
+}
+
 let currentImg = 0;
+drawBubbles()
 const slideShoeImage = document.querySelector('.image')
 slideShoeImage.setAttribute('src', images[currentImg])
 
@@ -22,6 +33,8 @@ prevBtn.addEventListener('click', function(e){
         currentImg--
     }
     slideShoeImage.setAttribute('src', images[currentImg])
+    //bubbles[currentImg].textContent = '●'
+    drawBubbles()
 })
 
 const nextBtn = document.querySelector('.next')
@@ -36,16 +49,16 @@ nextBtn.addEventListener('click', function(e){
         currentImg++
     }
     slideShoeImage.setAttribute('src', images[currentImg])
+    drawBubbles()
 })
 
-const bubbles = document.querySelectorAll('.bubble')
 for (let i = 0; i < bubbles.length; i++){
     bubbles[i].addEventListener('click', function(e){
         //console.log('bubble')
         //console.log(parseFloat(bubbles[i].id.slice(-1)))
         currentImg = parseFloat(bubbles[i].id.slice(-1))
         slideShoeImage.setAttribute('src', images[currentImg])
+        drawBubbles()
     })
 }
 
-//○● TODO: need to draw the bubbles
