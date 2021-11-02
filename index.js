@@ -22,24 +22,7 @@ drawBubbles()
 const slideShoeImage = document.querySelector('.image')
 slideShoeImage.setAttribute('src', images[currentImg])
 
-const prevBtn = document.querySelector('.previous')
-prevBtn.addEventListener('click', function(e){
-    //check if your zero
-    //console.log('prev')
-    if(currentImg === 0){
-        currentImg = images.length-1
-    }
-    else{
-        currentImg--
-    }
-    slideShoeImage.setAttribute('src', images[currentImg])
-    //bubbles[currentImg].textContent = '●'
-    drawBubbles()
-})
-
-const nextBtn = document.querySelector('.next')
-console.log(nextBtn)
-nextBtn.addEventListener('click', function(e){
+function advanceOne(){
     //check if your at the max
     //console.log('next')
     if(currentImg === images.length-1){
@@ -50,6 +33,25 @@ nextBtn.addEventListener('click', function(e){
     }
     slideShoeImage.setAttribute('src', images[currentImg])
     drawBubbles()
+}
+
+
+const prevBtn = document.querySelector('.previous')
+prevBtn.addEventListener('click', function(e){
+    //check if your zero
+    if(currentImg === 0){
+        currentImg = images.length-1
+    }
+    else{
+        currentImg--
+    }
+    slideShoeImage.setAttribute('src', images[currentImg])
+    drawBubbles()})
+
+const nextBtn = document.querySelector('.next')
+console.log(nextBtn)
+nextBtn.addEventListener('click', function(e){
+    advanceOne()
 })
 
 for (let i = 0; i < bubbles.length; i++){
@@ -62,3 +64,4 @@ for (let i = 0; i < bubbles.length; i++){
     })
 }
 
+setInterval(advanceOne, 3000)
